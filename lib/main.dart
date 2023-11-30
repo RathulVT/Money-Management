@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:money_management/screens/home/Screen_home.dart';
+import 'package:money_management/screens/home/Money_M_bottomNavigation.dart';
+
 
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  Screen_home()
+      home:  const Money_Mgt_BottomNavigation()
     );
   }
 }
