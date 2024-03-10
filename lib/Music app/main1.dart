@@ -16,7 +16,7 @@ void main() {
           create: (context) => PlayListProvider(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<Themeprovider>(context).themeData,
-      home: HomaMpage(),
+      home: const HomaMpage(),
     );
   }
 }

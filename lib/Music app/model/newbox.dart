@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/Music%20app/theme_page/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class NewBox extends StatelessWidget {
   final Widget child;
@@ -8,19 +10,21 @@ class NewBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool  isDarkMode = Provider.of<Themeprovider>(context).isdarkMode;
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
         color: Theme.of(context).colorScheme.background,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.shade500,
+            color:isDarkMode ?Colors.black: Colors.grey.shade500,
             blurRadius: 15,
             offset: const Offset(4, 4)
           ),
-          const BoxShadow(
-              color: Colors.white,
+           BoxShadow(
+              color:isDarkMode ?Colors.black54 : Colors.white,
               blurRadius: 15,
-              offset: Offset(-4, -4)
+              offset: const Offset(-4, -4)
           ),
         ],
       ),
