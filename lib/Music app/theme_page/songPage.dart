@@ -8,8 +8,9 @@ class SongPage extends StatelessWidget {
 
   // convert  duration  into min:sec
   String formatTime(Duration duration) {
-    String twoDigitSeconds = duration.inSeconds.remainder(60).toString().padLeft(2,"0");
-    String formattedTime = "${duration.inMinutes}:$duration.$twoDigitSeconds}";
+    String twoDigitSeconds =
+        duration.inSeconds.remainder(60).toString().padLeft(2, "0");
+    String formattedTime = "${duration.inMinutes}:$twoDigitSeconds";
     return formattedTime;
   }
 
@@ -92,7 +93,7 @@ class SongPage extends StatelessWidget {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -114,21 +115,22 @@ class SongPage extends StatelessWidget {
                 ),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                      thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 8),
-                      inactiveTrackColor: Colors.deepPurpleAccent),
+                    thumbShape:
+                        const RoundSliderThumbShape(enabledThumbRadius: 8),
+                  ),
                   child: Slider(
                     min: 0,
                     max: value.totalDuration.inSeconds.toDouble(),
                     value: value.currentDuration.inSeconds.toDouble(),
                     activeColor: Colors.green,
-                    onChanged: (double double) {
-
-                    },
+                    onChanged: (double double) { },
                     onChangeEnd: (double double) {
                       value.seek(Duration(seconds: double.toInt()));
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -136,9 +138,7 @@ class SongPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {
-                            value.previousSong();
-                          },
+                          onTap: value.previousSong,
                           child: const NewBox(
                             child: Icon(Icons.skip_previous),
                           ),
@@ -148,9 +148,7 @@ class SongPage extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: GestureDetector(
-                          onTap: () {
-                            value.pauseandresume();
-                          },
+                          onTap: value.pauseandresume,
                           child: NewBox(
                             child: Icon(value.isPlaying
                                 ? Icons.pause
@@ -161,9 +159,7 @@ class SongPage extends StatelessWidget {
                       const SizedBox(width: 25),
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {
-                            value.playNextSong();
-                          },
+                          onTap: value.playNextSong,
                           child: const NewBox(
                             child: Icon(Icons.skip_next),
                           ),

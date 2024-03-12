@@ -7,22 +7,22 @@ class PlayListProvider extends ChangeNotifier {
   final List<Song> _playlist = [
     //song 1
     Song(
-        songName: "songName",
-        artistName: "artistName",
+        songName: "songName 1",
+        artistName: "artistName 1",
         albumArtImagePath: "assets/images/song.jpg",
         audioPath: 'assets/audio/DeathGrips.mp3'),
 
     Song(
-        songName: "songName",
-        artistName: "artistName",
-        albumArtImagePath: "assets/images/song.jpg",
-        audioPath: 'assets/audio/DeathGrips.mp3'),
+        songName: "songName 2",
+        artistName: "artistName 2",
+        albumArtImagePath: "assets/images/song2.jpg",
+        audioPath: 'assets/audio/song2.mp3'),
 
     Song(
-        songName: "songName",
-        artistName: "artistName",
-        albumArtImagePath: "assets/images/song.jpg",
-        audioPath: 'assets/audio/DeathGrips.mp3'),
+        songName: "songName 2",
+        artistName: "artistName 2",
+        albumArtImagePath: "assets/images/song3.jpg",
+        audioPath: 'assets/audio/song3.mp3'),
   ];
 
   //current song
@@ -47,7 +47,7 @@ class PlayListProvider extends ChangeNotifier {
 
   //play a song
   void play()async{
-    final String path = _playlist[currentSongIndex!].audioPath;
+    final String path = _playlist[_currentSongIndex!].audioPath;
     await _audioplayer.stop(); //stop current song
     await _audioplayer.play(AssetSource(path));// play new song
     _isPlaying = true;
@@ -57,7 +57,7 @@ class PlayListProvider extends ChangeNotifier {
   //pause current song
   void pause()async{
     await _audioplayer.pause();
-    _isPlaying = true;
+    _isPlaying = false;
     notifyListeners();
   }
 
@@ -101,9 +101,9 @@ class PlayListProvider extends ChangeNotifier {
   void previousSong()async{
     // if song pass 2 sec, restart current song
     if(_currentDuration.inSeconds > 2){
-      seek(Duration.zero);
+     seek(Duration.zero);
     }
-    //if  its withi first 2sec of the song ,go back to previous song
+    //if  its within first 2sec of the song ,go back to previous song
     else{
       if(_currentSongIndex!>0){
         currentSongIndex =_currentSongIndex! -1;
